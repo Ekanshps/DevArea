@@ -13,6 +13,7 @@ const config: Config = {
         light: {
           'bg': '#eeeedf',
           'card': '#ffffff',
+          'heading': '#0f172a',
           'text': '#0f172a',
           'text-secondary': '#475569',
           'primary': '#fbbf24',
@@ -22,8 +23,20 @@ const config: Config = {
         },
         // DevArea Theme - Dark mode
         dark: {
+          '50': '#f8fafc',
+          '100': '#e2e8f0',
+          '200': '#cbd5e1',
+          '300': '#94a3b8',
+          '400': '#64748b',
+          '500': '#475569',
+          '600': '#334155',
+          '700': '#1e293b',
+          '800': '#0f172a',
+          '900': '#050505',
+          '950': '#000000',
           'bg': '#050505',
           'card': '#0f172a',
+          'heading': '#ffffff',
           'text': '#ffffff',
           'text-secondary': '#cbd5e1',
           'primary': '#fbbf24',

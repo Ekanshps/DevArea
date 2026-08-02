@@ -22,7 +22,7 @@ export default function Home() {
         }
         html.dark { 
           --color-services-bg: #000000;
-          --color-heading: #fcd34d;
+          --color-heading: #ffffff;
           --color-text: #cbd5e1;
         }
       `}</style>
@@ -60,7 +60,10 @@ export default function Home() {
                   <span className="text-sm text-yellow-700 dark:text-yellow-300 font-medium">Award-winning digital agency</span>
                 </div>
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-light-text dark:text-white">
+                <h1
+                  className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+                  style={{ color: 'var(--color-heading, #0f172a)' }}
+                >
                   Build 
                   <span className="bg-gradient-to-r from-yellow-600 to-orange-600 dark:from-yellow-400 dark:to-orange-400 bg-clip-text text-transparent"> Websites </span>
                   That Convert
