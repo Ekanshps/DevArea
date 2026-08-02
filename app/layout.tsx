@@ -27,9 +27,6 @@ export const metadata: Metadata = {
   },
   description: SEO.description,
   keywords: SEO.keywords,
-  alternates: {
-    canonical: SEO.baseUrl,
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
