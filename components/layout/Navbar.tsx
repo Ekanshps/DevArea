@@ -124,7 +124,7 @@ export const Navbar = () => {
                         className={`flex items-center gap-1 transition-colors duration-200 font-medium text-sm lg:text-base group ${
                           isDropdownOpen
                             ? 'text-yellow-600 dark:text-yellow-400'
-                            : 'text-light-text dark:text-dark-text hover:text-yellow-600 dark:hover:text-yellow-400'
+                            : 'text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300'
                         }`}
                       >
                         {item.label}

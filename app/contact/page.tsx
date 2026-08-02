@@ -55,30 +55,30 @@ export default function Contact() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <span className="inline-block mb-4 px-4 py-2 bg-green-100/60 text-green-700 rounded-full text-sm font-semibold backdrop-blur-sm">
-              âš¡ Fastest Response on WhatsApp
+              ⚡ Fastest Response on WhatsApp
             </span>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-[#b91c1c] via-orange-600 to-[#f59e0b] bg-clip-text text-transparent">
-                Get Your Business Website in 3â€“5 Days
+                Get Your Business Website in 3–5 Days
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-2 leading-relaxed font-semibold">
-              Free demo â€¢ Starting from â‚¹2,999 â€¢ No upfront payment
+              Free demo • Starting from ₹2,999 • No upfront payment
             </p>
 
             <p className="text-sm text-gray-500 max-w-xl mx-auto mb-10">
-              ðŸ’š We respond within 10â€“30 minutes on WhatsApp
+              💚 We respond within 10–30 minutes on WhatsApp
             </p>
 
             {/* Trust Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 max-w-2xl mx-auto">
               {[
-                { icon: 'âœ”', text: 'No upfront payment' },
-                { icon: 'âœ”', text: 'Free demo before payment' },
-                { icon: 'âœ”', text: 'Fast delivery in 3â€“5 days' },
-                { icon: 'âœ”', text: 'Mobile-friendly design' },
+                { icon: '✔', text: 'No upfront payment' },
+                { icon: '✔', text: 'Free demo before payment' },
+                { icon: '✔', text: 'Fast delivery in 3–5 days' },
+                { icon: '✔', text: 'Mobile-friendly design' },
               ].map((badge, index) => (
                 <motion.div
                   key={index}
@@ -214,9 +214,9 @@ export default function Contact() {
                   viewport={{ once: true }}
                   className="mt-auto p-6 rounded-2xl bg-gradient-to-br from-green-50/80 to-emerald-50/80 border border-green-200/60 flex-shrink-0"
                 >
-                  <p className="text-sm font-bold text-green-700 mb-2">âš¡ Fast Response Guaranteed</p>
+                  <p className="text-sm font-bold text-green-700 mb-2">⚡ Fast Response Guaranteed</p>
                   <p className="text-xs text-green-700 leading-relaxed">
-                    We respond within 10â€“30 minutes on WhatsApp. No upfront payment required until
+                    We respond within 10–30 minutes on WhatsApp. No upfront payment required until
                     you approve the demo.
                   </p>
                 </motion.div>
@@ -245,7 +245,7 @@ export default function Contact() {
                 {/* Tip Box */}
                 <div className="p-4 bg-green-50/80 border border-green-200/60 rounded-xl mb-8 flex-shrink-0">
                   <p className="text-xs text-green-700 font-medium">
-                    ðŸ’¡ Tip: WhatsApp chat gets you free demo first, payment only after approval.
+                    💡 Tip: WhatsApp chat gets you free demo first, payment only after approval.
                   </p>
                 </div>
 
@@ -310,7 +310,7 @@ export default function Contact() {
                       className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
                     >
                       <option value="">Select a service (optional)</option>
-                      <option value="business-website">Business Website (â‚¹2999)</option>
+                      <option value="business-website">Business Website (₹2999)</option>
                       <option value="landing-pages">Landing Page</option>
                       <option value="ecommerce">E-commerce Store</option>
                       <option value="ui-ux-design">UI/UX Design</option>

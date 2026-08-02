@@ -288,6 +288,115 @@ export const CASE_STUDIES = [
   },
 ]
 
+export type PortfolioProject = {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  result: string;
+  slug: string;
+};
+
+// ✏️ Naya project add karna ho to yahan object add karo
+export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
+  {
+    id: '1',
+    title: 'TechStartup Website Redesign',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1499747292307-58a92ef88001?w=600&h=400&fit=crop',
+    result: 'Increased conversion rate by 45% with modern, responsive design',
+    slug: 'techstartup-redesign',
+  },
+  {
+    id: '2',
+    title: 'E-commerce Platform Optimization',
+    category: 'Ecommerce',
+    image: 'https://images.unsplash.com/photo-1516534775068-bb57ad6e9f65?w=600&h=400&fit=crop',
+    result: 'Boosted online sales by 60% through UX improvements and checkout optimization',
+    slug: 'ecommerce-optimization',
+  },
+  {
+    id: '3',
+    title: 'SaaS Dashboard UI Redesign',
+    category: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+    result: 'Improved user engagement by 35% with intuitive dashboard design',
+    slug: 'saas-dashboard-ui',
+  },
+  {
+    id: '4',
+    title: 'Healthcare Portal Development',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=600&h=400&fit=crop',
+    result: 'HIPAA-compliant portal serving 10,000+ patients with secure data access',
+    slug: 'healthcare-portal',
+  },
+  {
+    id: '5',
+    title: 'Fashion Brand SEO Campaign',
+    category: 'SEO',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=400&fit=crop',
+    result: 'Ranked top 3 for 25+ high-volume keywords, organic traffic +220%',
+    slug: 'fashion-seo-campaign',
+  },
+  {
+    id: '6',
+    title: 'Mobile App Landing Page',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1512941691920-25bda097df5a?w=600&h=400&fit=crop',
+    result: 'Generated 5,000+ app downloads with conversion-optimized landing page',
+    slug: 'mobile-app-landing',
+  },
+  {
+    id: '7',
+    title: 'B2B SaaS UI/UX Redesign',
+    category: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
+    result: 'Reduced user onboarding time by 40%, improved user retention by 28%',
+    slug: 'saas-ux-redesign',
+  },
+  {
+    id: '8',
+    title: 'Online Store Launch',
+    category: 'Ecommerce',
+    image: 'https://images.unsplash.com/photo-1488190211105-8342881b725d?w=600&h=400&fit=crop',
+    result: 'Successfully launched e-commerce platform with $500K first-month revenue',
+    slug: 'online-store-launch',
+  },
+  {
+    id: '9',
+    title: 'Corporate Website Redesign',
+    category: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1460925895917-adf4e565db18?w=600&h=400&fit=crop',
+    result: 'Enhanced brand presence with modern design, improved lead generation by 55%',
+    slug: 'corporate-redesign',
+  },
+  {
+    id: '10',
+    title: 'Local Business SEO Strategy',
+    category: 'SEO',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop',
+    result: 'Achieved #1 local rankings, generated 200+ qualified leads monthly',
+    slug: 'local-seo-strategy',
+  },
+  {
+    id: '11',
+    title: 'Fintech App Interface Design',
+    category: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=600&h=400&fit=crop',
+    result: 'Designed intuitive financial interface used by 100K+ daily active users',
+    slug: 'fintech-interface',
+  },
+  {
+    id: '12',
+    title: 'Subscription Box Website',
+    category: 'Ecommerce',
+    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop',
+    result: 'Built subscription model, achieved 70% monthly recurring revenue growth',
+    slug: 'subscription-box-website',
+  },
+];
+
 export const TESTIMONIALS = [
   {
     id: 1,
