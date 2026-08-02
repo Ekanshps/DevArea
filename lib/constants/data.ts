@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   name: 'DevArea',
   description: 'Premium digital agency offering custom website development, responsive design, UI/UX, and digital solutions for growing businesses.',
-  url: 'https://devarea.com',
-  ogImage: 'https://devarea.com/og-image.jpg',
+  url: 'https://devareyt.in',
+  ogImage: 'https://devareyt.in/og-image.jpg',
   links: {
     twitter: 'https://twitter.com/devarea',
     linkedin: 'https://linkedin.com/company/devarea',

@@ -9,6 +9,12 @@ import { WhatsAppButton } from '@/components/sections/WhatsAppButton'
 
 export default function Contact() {
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoggvzv'
+  const FORM_COOLDOWN_MS = 30 * 1000
+  const MIN_FILL_TIME_MS = 4000
+  const LAST_SUBMIT_STORAGE_KEY = 'devarea_contact_last_submit'
+  const whatsappNumber = BRAND.phone.replace(/\D/g, '')
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi! I need details about website development.')}`
+  const mapHref = 'https://maps.google.com/?q=Lucknow,+UP,+India'
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -16,6 +22,8 @@ export default function Contact() {
     service: '',
     message: '',
   })
+  const [honeypot, setHoneypot] = useState('')
+  const [formStartTime, setFormStartTime] = useState(() => Date.now())
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
@@ -28,6 +36,34 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const now = Date.now()
+
+    if (honeypot.trim()) {
+      setSubmitMessage({
+        type: 'success',
+        text: 'Thanks! Your message has been sent successfully. We will contact you soon.',
+      })
+      return
+    }
+
+    if (now - formStartTime < MIN_FILL_TIME_MS) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'Please review your details and try again in a few seconds.',
+      })
+      return
+    }
+
+    const lastSubmittedAt = Number(window.localStorage.getItem(LAST_SUBMIT_STORAGE_KEY) || '0')
+    if (now - lastSubmittedAt < FORM_COOLDOWN_MS) {
+      const waitSeconds = Math.ceil((FORM_COOLDOWN_MS - (now - lastSubmittedAt)) / 1000)
+      setSubmitMessage({
+        type: 'error',
+        text: `Please wait ${waitSeconds}s before sending another message.`,
+      })
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitMessage(null)
 
@@ -38,7 +74,11 @@ export default function Contact() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _subject: 'New contact submission from devareyt.in',
+          _gotcha: honeypot,
+        }),
       })
 
       if (!response.ok) {
@@ -58,6 +98,7 @@ export default function Contact() {
         type: 'success',
         text: 'Thanks! Your message has been sent successfully. We will contact you soon.',
       })
+      window.localStorage.setItem(LAST_SUBMIT_STORAGE_KEY, String(now))
       setFormData({
         name: '',
         phone: '',
@@ -65,6 +106,8 @@ export default function Contact() {
         service: '',
         message: '',
       })
+      setHoneypot('')
+      setFormStartTime(Date.now())
     } catch (error) {
       setSubmitMessage({
         type: 'error',
@@ -212,6 +255,7 @@ export default function Contact() {
                       label: 'Email',
                       value: BRAND.email,
                       href: `mailto:${BRAND.email}`,
+                      external: false,
                       color: 'from-blue-500/10 to-cyan-500/10',
                       borderColor: 'border-blue-200/50',
                       iconColor: 'text-blue-600',
@@ -220,7 +264,8 @@ export default function Contact() {
                       icon: Phone,
                       label: 'WhatsApp (Fastest)',
                       value: BRAND.phone,
-                      href: `tel:${BRAND.phone}`,
+                      href: whatsappHref,
+                      external: true,
                       color: 'from-green-500/10 to-emerald-500/10',
                       borderColor: 'border-green-200/50',
                       iconColor: 'text-green-600',
@@ -230,7 +275,8 @@ export default function Contact() {
                       icon: MapPin,
                       label: 'Location',
                       value: BRAND.address,
-                      href: '#',
+                      href: mapHref,
+                      external: true,
                       color: 'from-orange-500/10 to-orange-500/10',
                       borderColor: 'border-orange-200/50',
                       iconColor: 'text-orange-600',
@@ -239,6 +285,8 @@ export default function Contact() {
                     <motion.a
                       key={index}
                       href={contact.href}
+                      target={contact.external ? '_blank' : undefined}
+                      rel={contact.external ? 'noopener noreferrer' : undefined}
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -306,6 +354,20 @@ export default function Contact() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+                  {/* Honeypot field for bots. Legit users should never fill this. */}
+                  <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website-field">Leave this field empty</label>
+                    <input
+                      id="website-field"
+                      type="text"
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="space-y-5 overflow-y-auto pr-1">
                     {/* Full Name */}
                     <div>

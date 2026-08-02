@@ -136,7 +136,7 @@ const team = [
     socials: {
       instagram: 'https://instagram.com/lyzr.og',
       linkedin: 'https://linkedin.com/ayushsingh/',
-      website: 'https://devareayt.in',
+      website: 'https://devareyt.in',
     },
   },
 

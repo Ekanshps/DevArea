@@ -45,7 +45,7 @@ export const NAVIGATION = {
 
 // SEO Configuration
 export const SEO = {
-  baseUrl: 'https://devareayt.in',
+  baseUrl: 'https://devareyt.in',
   title: 'DevArea - Premium Digital Growth Agency',
   description: 'Custom website development, UI/UX design, landing pages, ecommerce, and AI chatbot integration for modern businesses.',
   keywords: [
