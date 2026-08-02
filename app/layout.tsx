@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { WhatsAppFloatingButton } from "@/components/sections/WhatsAppFloatingButton";
 import { ExitIntentPopup } from "@/components/sections/ExitIntentPopup";
-import { SEO } from "@/lib/constants";
+import { BRAND, SEO } from "@/lib/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,30 +20,58 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevArea - Premium Digital Growth Agency | Custom Web Development",
-  description: "Build high-performing websites, landing pages, ecommerce stores, and AI-powered experiences with DevArea. Expert web development and design agency.",
-  keywords: SEO.keywords.join(', '),
   metadataBase: new URL(SEO.baseUrl),
+  title: {
+    default: SEO.title,
+    template: "%s | DevArea",
+  },
+  description: SEO.description,
+  keywords: SEO.keywords,
+  alternates: {
+    canonical: SEO.baseUrl,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicon.ico"],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
-    title: "DevArea - Premium Digital Growth Agency",
-    description: "Custom website development, UI/UX design, landing pages, ecommerce solutions, and AI chatbot integration.",
+    title: SEO.title,
+    description: SEO.description,
     url: SEO.baseUrl,
-    siteName: "DevArea",
+    siteName: BRAND.name,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevArea",
+        alt: BRAND.name,
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevArea - Premium Digital Growth Agency",
-    description: "Custom website development and digital solutions that drive growth.",
+    title: SEO.title,
+    description: SEO.description,
     creator: "@devarea",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
