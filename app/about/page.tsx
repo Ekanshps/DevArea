@@ -105,27 +105,41 @@ const whyChooseUs = [
 // Team data
 const team = [
   {
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    image: './images/GauravTiwari.jpeg',
     name: 'Gaurav Tiwari',
     role: 'Founder & Full Stack Developer',
     bio: 'Visionary leader building innovative digital solutions with full-stack expertise',
     socials: {
-      instagram: 'https://instagram.com',
-      linkedin: 'https://linkedin.com',
+      instagram: 'https://instagram.com/gauravtiwari',
+      linkedin: 'https://linkedin.com/in/gauravtiwari',
       website: 'https://gaurav.com',
     },
   },
   {
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+    image: './images/Ekansh.jpeg',
     name: 'Ekansh Pratap Singh',
     role: 'Co-Founder, Frontend Developer & SEO Expert',
     bio: 'Frontend specialist combining beautiful UI design with SEO optimization expertise',
     socials: {
-      instagram: 'https://instagram.com',
-      linkedin: 'https://linkedin.com',
-      website: 'https://ekansh.com',
+      instagram: 'https://instagram.com/heyyekansh',
+      linkedin: 'https://linkedin.com/ekanshsinghyt/',
+      website: 'https://epsingh.in',
     },
   },
+   
+
+   {
+    image: './images/AyushSingh.jpeg',
+    name: 'Ayush Singh',
+    role: 'SQL Database Specialist',
+    bio: 'SQL Database Specialist, ensuring efficient data management and optimization for applications',
+    socials: {
+      instagram: 'https://instagram.com/lyzr.og',
+      linkedin: 'https://linkedin.com/ayushsingh/',
+      website: 'https://devareayt.in',
+    },
+  },
+
 ];
 
 // Stats data
@@ -153,10 +167,10 @@ export default function AboutPage() {
                 Get to Know Us
               </h1>
               <p className="text-xl text-[#b91c1c] font-script italic mb-6">
-                The Team Behind WeInsightians
+                The Team Behind Dev Area
               </p>
               <p className="text-xl text-light-text mb-8 leading-relaxed">
-                We're not just developers â€“ we're storytellers, designers, and digital growth partners dedicated to helping businesses thrive online.
+                We're not just developers, We're storytellers, designers, and digital growth partners dedicated to helping businesses thrive online.
               </p>
 
               {/* CTA Buttons */}
@@ -227,28 +241,34 @@ export default function AboutPage() {
 
             <div className="space-y-6 text-lg text-light-text leading-relaxed">
               <p>
-                <span className="font-bold text-light-heading">WeInsightians began with just two friends and a shared vision.</span> It all started in a small college room, where long conversations about technology, business, and the future slowly turned into something bigger. What began as curiosity soon became a passion â€” a desire to create something meaningful in the digital space.
+                <span className="font-bold text-light-heading">DevArea was founded with a simple vision — to make technology accessible, impactful, and meaningful.</span> What started as conversations between two passionate individuals soon evolved into a shared mission. Founder <span className="font-bold">Gaurav Tiwari</span> and Co-Founder <span className="font-bold">Ekansh Pratap Singh</span> believed that great ideas deserve great execution, regardless of the size of the business behind them.
               </p>
 
               <p>
-                As we explored more, one thing became clear. Many businesses, especially startups and local brands, had great ideas but struggled to build a strong online presence. They knew what they wanted to achieve, but didn't have the right digital tools or guidance to bring it to life. That gap is what inspired us to take the first step.
+                In the beginning, DevArea wasn't a company with a large office or a big team. It was built from late-night brainstorming sessions, countless hours of learning, and the determination to create digital solutions that truly solve problems. Every project became an opportunity to improve our skills, understand businesses better, and deliver something we could be proud of.
               </p>
 
               <p>
-                With nothing more than our laptops, skills, and determination, we started building. The early days were not easy â€” balancing studies, late-night coding sessions, and client work pushed us constantly. We made mistakes, learned quickly, and improved with every project. Each small win gave us more confidence, and slowly, our work began to speak for itself.
+                As we connected with startups, entrepreneurs, and growing brands, we noticed a common challenge. Many had incredible ideas but lacked the technical expertise, design direction, or digital strategy needed to transform those ideas into reality. That realization became the foundation of DevArea's purpose — helping businesses bridge the gap between vision and execution.
               </p>
 
               <p>
-                <span className="font-bold text-light-heading">What started as two friends working on small projects has now grown into something much bigger.</span> Businesses started trusting us â€” not just to build websites, but to create experiences that help them grow, connect, and stand out online.
+                Every website we designed, every application we developed, and every digital experience we created strengthened our belief that technology is not just about writing code. It's about building trust, creating opportunities, and helping businesses grow in an increasingly digital world.
               </p>
 
               <p>
-                Today, <span className="font-bold text-light-heading">WeInsightians is more than just a digital agency.</span> It represents our journey, our mindset, and our commitment to building impactful digital solutions. From simple websites to complete digital experiences, our focus remains the same â€” helping businesses turn ideas into reality.
+                <span className="font-bold text-light-heading">Today, DevArea is more than a web development and digital solutions company.</span> It represents innovation, continuous learning, and a commitment to quality. We combine creativity, modern technology, and strategic thinking to build websites, web applications, and digital products that are fast, scalable, and designed for long-term success.
               </p>
 
               <p>
-                And this is just the beginning. We continue to learn, evolve, and push our limits every day. <span className="font-bold">Because we believe that every great journey starts with a simple idea â€” and the courage to build it.</span>
+                Our journey is still in its early chapters, but our ambition is clear. We aim to become a trusted technology partner for businesses that want more than just a website—they want a strong digital presence that drives real growth. Every challenge we solve and every client we work with moves us one step closer to that vision.
               </p>
+
+              <p>
+                 <span className="font-bold text-light-heading">At DevArea, we don't just build digital products.</span> We build experiences, relationships, and opportunities. Because we believe every successful business starts with a bold idea—and the right team to bring it to life.
+              </p>
+
+
             </div>
           </motion.div>
         </div>
