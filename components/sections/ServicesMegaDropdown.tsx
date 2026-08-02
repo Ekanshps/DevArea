@@ -143,8 +143,7 @@ export const ServicesMegaDropdown = ({ isOpen, onClose }: ServicesMegaDropdownPr
                   {/* Single Row Layout with Smooth Horizontal Scroll */}
                   <div className="overflow-x-auto overflow-y-hidden scroll-smooth pb-2 [scrollbar-width:thin]">
                     <div className="flex flex-nowrap gap-6 min-w-max">
-                    {/* Show only first 4 services */}
-                    {MEGA_DROPDOWN_SERVICES.slice(0, 4).map((service) => (
+                    {MEGA_DROPDOWN_SERVICES.map((service) => (
                       <Link key={service.id} href={service.href}>
                         <motion.div
                           onClick={onClose}
