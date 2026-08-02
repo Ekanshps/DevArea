@@ -103,7 +103,7 @@ const isMobile = window.innerWidth <= 768;
 In `app/layout.tsx`:
 ```tsx
 <ExitIntentPopup 
-  whatsappNumber="919876543210"  // ← Change this
+  whatsappNumber="917068317379"  // ← Change this
   whatsappMessage="Your message"
 />
 ```
@@ -111,7 +111,7 @@ In `app/layout.tsx`:
 ### 2. Change WhatsApp Message
 ```tsx
 <ExitIntentPopup 
-  whatsappNumber="919876543210"
+  whatsappNumber="917068317379"
   whatsappMessage="Hi, mujhe website development ke baare mein details chahiye"  // ← Change this
 />
 ```
@@ -230,7 +230,7 @@ With this system, you can expect:
 - Try in incognito/private window
 
 ### WhatsApp link not working?
-- Verify phone number format: `919876543210` (country code + number)
+- Verify phone number format: `917068317379` (country code + number)
 - Test URL directly in browser
 
 ### Animation not smooth?

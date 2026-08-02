@@ -546,7 +546,7 @@ export default function ServicesPage() {
                 Get Quote
               </motion.a>
               <motion.a
-                href="tel:+919876543210"
+                href="tel:+917068317379"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 border-2 border-amber-600 text-[#b91c1c] font-bold rounded-lg hover:bg-amber-600/10 transition-all duration-300"

@@ -44,7 +44,7 @@ export const organizationSchema = {
   contact: {
     '@type': 'ContactPoint',
     contactType: 'Sales',
-    email: 'hello@devarea.com',
+    email: 'ekanshprataps@gmail.com',
   },
 }
 
@@ -54,9 +54,9 @@ export const localBusinessSchema = {
   name: SITE_CONFIG.name,
   description: SITE_CONFIG.description,
   url: SITE_CONFIG.url,
-  telephone: '+1-555-123-4567',
-  email: 'hello@devarea.com',
-  areaServed: ['US', 'CA', 'UK'],
+  telephone: '+91 7068317379',
+  email: 'ekanshprataps@gmail.com',
+  areaServed: ['IN'],
 }
 
 export const faqSchema = (items: Array<{ question: string; answer: string }>) => ({

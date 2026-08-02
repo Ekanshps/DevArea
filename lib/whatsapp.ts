@@ -1,5 +1,5 @@
 // WhatsApp Integration Configuration
-export const WHATSAPP_NUMBER = "94XXXXXXXX"; // Replace with your actual number (country code + number, no +)
+export const WHATSAPP_NUMBER = "917068317379"; // Country code + number, no +
 
 export const WHATSAPP_MESSAGES = {
   default: "Hi! I want to know more about your services",

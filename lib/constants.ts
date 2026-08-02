@@ -3,9 +3,9 @@ export const BRAND = {
   name: 'DevArea',
   tagline: 'Premium Digital Growth Agency',
   description: 'We build high-performing websites, landing pages, ecommerce stores, and AI-powered experiences that help businesses grow online.',
-  email: 'hello@devarea.com',
-  phone: '+1 (555) 123-4567',
-  address: 'Tiwari Ganj, Near BBD University, Lucknow',
+  email: 'ekanshprataps@gmail.com',
+  phone: '+91 7068317379',
+  address: 'Lucknow, UP India',
   social: {
     twitter: 'https://twitter.com/devarea',
     linkedin: 'https://linkedin.com/company/devarea',

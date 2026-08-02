@@ -120,7 +120,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppFloatingButton type="default" position="bottom-right" />
           <ExitIntentPopup 
-            whatsappNumber="919876543210"
+            whatsappNumber="917068317379"
             whatsappMessage="Hi, mujhe website development ke baare mein details chahiye"
           />
         </ThemeProvider>

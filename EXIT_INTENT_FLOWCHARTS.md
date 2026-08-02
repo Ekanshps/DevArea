@@ -315,7 +315,7 @@ User clicks "Chat on WhatsApp"
     │
     ▼
 WhatsApp Link Generated:
-https://wa.me/919876543210?text=Hi%20mujhe%20...
+https://wa.me/917068317379?text=Hi%20mujhe%20...
     │
     ├─ Desktop User
     │   └─ Opens in new tab (browser WhatsApp)

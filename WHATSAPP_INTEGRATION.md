@@ -7,7 +7,7 @@
 Open [`lib/whatsapp.ts`](lib/whatsapp.ts) and replace the number:
 
 ```typescript
-export const WHATSAPP_NUMBER = "919876543210"; // ✅ Change this to your number
+export const WHATSAPP_NUMBER = "917068317379"; // ✅ Change this to your number
 ```
 
 **Format:** Country code + number (no + sign)

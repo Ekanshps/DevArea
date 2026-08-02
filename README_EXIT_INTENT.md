@@ -40,7 +40,7 @@ Open `app/layout.tsx` and change:
 
 ```tsx
 <ExitIntentPopup 
-  whatsappNumber="919876543210"  // ← Your WhatsApp number
+  whatsappNumber="917068317379"  // ← Your WhatsApp number
   whatsappMessage="Hi, mujhe website development ke baare mein details chahiye"
 />
 ```
@@ -123,7 +123,7 @@ User sees:
 ### In `app/layout.tsx`:
 
 ```tsx
-whatsappNumber="919876543210"  // Change phone
+whatsappNumber="917068317379"  // Change phone
 whatsappMessage="Your message"  // Change text
 ```
 
@@ -223,7 +223,7 @@ Message: "Free consultation - Talk to expert"
 
 ### WhatsApp not opening?
 - Verify phone number format: `country_code + number`
-- Test format: `919876543210` (India example)
+- Test format: `917068317379` (India example)
 
 ### Animation not smooth?
 - Ensure Tailwind CSS is configured

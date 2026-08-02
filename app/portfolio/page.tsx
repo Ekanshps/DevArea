@@ -116,6 +116,8 @@ export default function PortfolioPage() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
+  const visibleProjects = filteredProjects.slice(0, 6);
+
   function handleUnlock(e: React.FormEvent) {
     e.preventDefault();
     // Client-side pre-check; real auth happens on the API
@@ -183,15 +185,15 @@ export default function PortfolioPage() {
               className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto"
             >
               <div className="p-4 bg-white rounded-xl border border-light-border">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">50+</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">5+</div>
                 <div className="text-light-text text-sm mt-1">Projects Delivered</div>
               </div>
               <div className="p-4 bg-white rounded-xl border border-light-border">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">40+</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">5+</div>
                 <div className="text-light-text text-sm mt-1">Happy Clients</div>
               </div>
               <div className="p-4 bg-white rounded-xl border border-light-border">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">5+ Yrs</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">3+ Yrs</div>
                 <div className="text-light-text text-sm mt-1">Industry Experience</div>
               </div>
             </motion.div>
@@ -265,7 +267,7 @@ export default function PortfolioPage() {
       <section className="w-full px-4 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
+            {visibleProjects.map((project, index) => (
               <div key={project.id} className="relative">
                 <ProjectCard {...project} index={index} />
                 {/* Delete button — only in admin mode when unlocked */}
@@ -282,7 +284,7 @@ export default function PortfolioPage() {
             ))}
           </motion.div>
 
-          {filteredProjects.length === 0 && (
+          {visibleProjects.length === 0 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
               <p className="text-light-text text-lg">No projects found in this category. Try another filter.</p>
             </motion.div>

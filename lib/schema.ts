@@ -24,7 +24,7 @@ export function generateOrganizationSchema() {
     address: {
       '@type': 'PostalAddress',
       addressLocality: BRAND.address,
-      addressCountry: 'US',
+        addressCountry: 'IN',
     },
   };
 }
@@ -39,7 +39,7 @@ export function generateLocalBusinessSchema() {
     address: {
       '@type': 'PostalAddress',
       addressLocality: BRAND.address,
-      addressCountry: 'US',
+        addressCountry: 'IN',
     },
     telephone: BRAND.phone,
     email: BRAND.email,
@@ -114,6 +114,6 @@ export function generateServiceSchema(service: {
       url: SEO.baseUrl,
     },
     url: service.url || service.href || SEO.baseUrl,
-    areaServed: 'US',
+      areaServed: 'IN',
   };
 }

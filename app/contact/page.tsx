@@ -8,6 +8,7 @@ import { BRAND } from '@/lib/constants'
 import { WhatsAppButton } from '@/components/sections/WhatsAppButton'
 
 export default function Contact() {
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoggvzv'
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -15,12 +16,66 @@ export default function Contact() {
     service: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitMessage(null)
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        let errorText = 'Something went wrong. Please try again in a moment.'
+        try {
+          const errorData = await response.json()
+          if (Array.isArray(errorData?.errors) && errorData.errors.length > 0) {
+            errorText = errorData.errors.map((err: { message?: string }) => err.message).filter(Boolean).join(' ')
+          }
+        } catch {
+          // Keep generic fallback message.
+        }
+        throw new Error(errorText)
+      }
+
+      setSubmitMessage({
+        type: 'success',
+        text: 'Thanks! Your message has been sent successfully. We will contact you soon.',
+      })
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        service: '',
+        message: '',
+      })
+    } catch (error) {
+      setSubmitMessage({
+        type: 'error',
+        text:
+          error instanceof Error && error.message
+            ? error.message
+            : 'Unable to submit the form right now. Please try again or contact us on WhatsApp.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const containerVariants = {
@@ -249,109 +304,129 @@ export default function Contact() {
                   </p>
                 </div>
 
-                {/* Form - Scrollable on overflow */}
-                <form className="space-y-5 flex-1 overflow-y-auto pr-1" action="/api/contact" method="POST">
-                  {/* Full Name */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="John Doe"
-                      className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
-                    />
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+                  <div className="space-y-5 overflow-y-auto pr-1">
+                    {/* Full Name */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        disabled={isSubmitting}
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                      />
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        disabled={isSubmitting}
+                        placeholder="+91 7068317379"
+                        className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                      />
+                    </div>
+
+                    {/* Service */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        What do you need?
+                      </label>
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                      >
+                        <option value="">Select a service (optional)</option>
+                        <option value="business-website">Business Website (₹2999)</option>
+                        <option value="landing-pages">Landing Page</option>
+                        <option value="ecommerce">E-commerce Store</option>
+                        <option value="ui-ux-design">UI/UX Design</option>
+                        <option value="other">Something Else</option>
+                      </select>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        Tell us about your project *
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        disabled={isSubmitting}
+                        rows={3}
+                        placeholder="Describe your business, goals, and any specific requirements..."
+                        className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl resize-none transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                      />
+                    </div>
                   </div>
 
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      placeholder="+91 9876543210"
-                      className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
-                    />
-                  </div>
-
-                  {/* Service */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      What do you need?
-                    </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
+                  {/* Button Section - Always visible at bottom */}
+                  <div className="mt-6 pt-6 border-t border-gray-200/30 flex-shrink-0 space-y-4">
+                    <motion.button
+                      whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 bg-gradient-to-r from-[#b91c1c] via-orange-600 to-[#f59e0b] text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-[#b91c1c]/30 hover:shadow-2xl hover:shadow-[#b91c1c]/40 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      <option value="">Select a service (optional)</option>
-                      <option value="business-website">Business Website (₹2999)</option>
-                      <option value="landing-pages">Landing Page</option>
-                      <option value="ecommerce">E-commerce Store</option>
-                      <option value="ui-ux-design">UI/UX Design</option>
-                      <option value="other">Something Else</option>
-                    </select>
-                  </div>
+                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? 'Sending...' : 'Send Details'}
+                    </motion.button>
 
-                  {/* Message */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Tell us about your project *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={3}
-                      placeholder="Describe your business, goals, and any specific requirements..."
-                      className="w-full px-4 py-3 bg-white/80 border border-gray-200/60 text-gray-900 placeholder:text-gray-400 rounded-xl resize-none transition-all duration-300 focus:outline-none focus:bg-white focus:border-[#f59e0b] focus:ring-2 focus:ring-amber-500/20 focus:shadow-lg focus:shadow-[#b91c1c]/10"
-                    />
+                    {submitMessage && (
+                      <p
+                        className={`text-sm text-center rounded-lg px-4 py-3 ${
+                          submitMessage.type === 'success'
+                            ? 'bg-green-50 text-green-700 border border-green-200'
+                            : 'bg-red-50 text-red-700 border border-red-200'
+                        }`}
+                      >
+                        {submitMessage.text}
+                      </p>
+                    )}
+
+                    {/* Helper Text */}
+                    <p className="text-xs text-gray-500 text-center">
+                      We'll review and respond within 24 hours. Or use WhatsApp for instant chat.
+                    </p>
                   </div>
                 </form>
-
-                {/* Button Section - Always visible at bottom */}
-                <div className="mt-6 pt-6 border-t border-gray-200/30 flex-shrink-0 space-y-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-[#b91c1c] via-orange-600 to-[#f59e0b] text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-[#b91c1c]/30 hover:shadow-2xl hover:shadow-[#b91c1c]/40 flex items-center justify-center gap-2 group"
-                  >
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    Send Details
-                  </motion.button>
-
-                  {/* Helper Text */}
-                  <p className="text-xs text-gray-500 text-center">
-                    We'll review and respond within 24 hours. Or use WhatsApp for instant chat.
-                  </p>
-                </div>
               </div>
             </motion.div>
           </div>

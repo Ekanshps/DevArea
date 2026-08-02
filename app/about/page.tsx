@@ -144,8 +144,8 @@ const team = [
 
 // Stats data
 const stats = [
-  { number: '50+', label: 'Projects Delivered' },
-  { number: '40+', label: 'Happy Clients' },
+  { number: '5+', label: 'Projects Delivered' },
+  { number: '5+', label: 'Happy Clients' },
   { number: '3+', label: 'Years Experience' },
   { number: '24/7', label: 'Support Available' },
 ];
@@ -397,7 +397,7 @@ export default function AboutPage() {
                 Start Project
               </motion.a>
               <motion.a
-                href="tel:+919876543210"
+                href="tel:+917068317379"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 border-2 border-amber-600 text-[#b91c1c] font-bold rounded-lg hover:bg-amber-600/10 transition-all"
