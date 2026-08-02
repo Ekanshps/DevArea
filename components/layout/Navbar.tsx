@@ -81,8 +81,8 @@ export const Navbar = () => {
           <div
             className={`transition-all duration-300 ${
               isScrolled
-                ? 'max-w-4xl mx-auto backdrop-blur-md rounded-full shadow-lg border'
-                : 'max-w-5xl mx-auto rounded-none shadow-none border-none'
+                ? 'max-w-5xl mx-auto backdrop-blur-md rounded-full shadow-lg border'
+                : 'max-w-7xl mx-auto rounded-none shadow-none border-none'
             }`}
             style={isScrolled ? {
               backgroundColor: theme === 'dark' ? 'rgba(2, 6, 23, 0.95)' : 'rgba(255, 255, 255, 0.9)',
