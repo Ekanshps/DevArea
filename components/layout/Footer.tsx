@@ -16,7 +16,7 @@ export const Footer = () => {
     <div className="mx-auto max-w-7xl">
       <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
-          <Link href="/" className="inline-block"><Image src="/images/logo1.png" alt="DevArea" width={200} height={90} className="h-14 w-auto object-contain" /></Link>
+          <Link href="/" className="inline-block"><Image src="/images/logo1.png" alt="DevArea" width={180} height={80} className="h-14 w-auto object-contain" /></Link>
           <p className="mt-5 max-w-sm text-sm leading-7">Digital products, campaigns, and automations for businesses ready to move with clarity.</p>
           <div className="mt-6 flex gap-3">{socials.map(({ label, href, icon: SocialIcon }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#a7ebf2]/70 bg-[#082f49] text-[#a7ebf2] transition hover:border-[#a7ebf2] hover:bg-[#a7ebf2] hover:text-[#011c2d]"><SocialIcon size={19} /></a>)}</div>
         </div>
