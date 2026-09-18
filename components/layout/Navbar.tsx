@@ -23,7 +23,7 @@ export const Navbar = () => {
   return (
     <motion.header initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.7, ease: 'easeOut' }} className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-8">
       <nav className={`mx-auto flex max-w-7xl items-center justify-between px-2 ${isScrolled ? 'rounded-full border border-[#a7ebf2]/15 bg-[#062b43]/95 px-5 py-2 shadow-2xl shadow-black/20 backdrop-blur-xl' : ''}`}>
-        <Link href="/" className="shrink-0" onClick={() => setIsOpen(false)}><Image src="/images/logo1.png" alt="DevArea" width={190} height={80} priority className="h-8 w-auto sm:h-8" /></Link>
+        <Link href="/" className="shrink-0" onClick={() => setIsOpen(false)}><Image src="/images/logo1.png" alt="DevArea" width={190} height={80} priority className="h-5 w-auto sm:h-8" /></Link>
         <div className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => item.label === 'Services' ? (
             <div key={item.href} className="relative py-3" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
