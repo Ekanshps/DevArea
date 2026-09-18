@@ -46,19 +46,20 @@ export const NAVIGATION = {
 // SEO Configuration
 export const SEO = {
   baseUrl: 'https://devareyt.in',
-  title: 'DevArea - Premium Digital Growth Agency',
-  description: 'Custom website development, UI/UX design, landing pages, ecommerce, and AI chatbot integration for modern businesses.',
+  title: 'DevArea | Web Development, SEO & AI Automation Agency India',
+  description: 'DevArea is a digital solutions agency in India building high-performance websites, landing pages, ecommerce stores, SEO foundations, and AI automations for growing businesses.',
   keywords: [
-    'web development agency',
-    'custom website development',
-    'responsive website design',
-    'UI UX design agency',
-    'landing page design services',
-    'ecommerce website development',
-    'SEO-friendly website development',
+    'digital solutions agency India',
+    'web development agency India',
+    'web development agency Lucknow',
     'website redesign services',
+    'conversion-focused landing pages',
+    'AI automation agency',
     'AI chatbot integration',
-    'conversion-focused web design',
+    'Google Meta ChatGPT ads',
+    'SEO website development',
+    'ecommerce website development',
+    'digital growth partner India',
   ],
 };
 
@@ -228,7 +229,7 @@ export const FAQ = [
   {
     id: 6,
     question: 'How much does a website cost?',
-    answer: 'Pricing varies based on scope, complexity, and features. Typical projects range from $5,000-$50,000+. We provide custom quotes after discussing your requirements.',
+    answer: 'Pricing depends on scope, complexity, and features. Typical projects range from ₹18,000 to ₹2,50,000+. We provide a clear custom quote after understanding your requirements.',
   },
 ];
 

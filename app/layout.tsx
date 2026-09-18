@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { WhatsAppFloatingButton } from "@/components/sections/WhatsAppFloatingButton";
 import { ExitIntentPopup } from "@/components/sections/ExitIntentPopup";
@@ -27,24 +28,26 @@ export const metadata: Metadata = {
   },
   description: SEO.description,
   keywords: SEO.keywords,
+  alternates: { canonical: SEO.baseUrl },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon.ico", sizes: "any" },
+      { url: "/favicon/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/favicon/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicon/favicon.ico"],
   },
-  manifest: "/site.webmanifest",
+  manifest: "/favicon/site.webmanifest",
   openGraph: {
     title: SEO.title,
     description: SEO.description,
     url: SEO.baseUrl,
     siteName: BRAND.name,
+    locale: "en_IN",
     images: [
       {
-        url: "/og-image.png",
+        url: "/images/premium-solutions.png",
         width: 1200,
         height: 630,
         alt: BRAND.name,
@@ -57,6 +60,7 @@ export const metadata: Metadata = {
     title: SEO.title,
     description: SEO.description,
     creator: "@devarea",
+    images: ["/images/premium-solutions.png"],
   },
   robots: {
     index: true,
@@ -85,7 +89,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <meta name="theme-color" content="#F8FAFC" />
+        <meta name="theme-color" content="#011c2d" />
         {/* Ensure theme is applied before React hydration */}
         <Script id="theme-init" strategy="beforeInteractive">
           {`
@@ -113,10 +117,10 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-screen flex flex-col bg-light-bg dark:bg-[#000000] text-light-heading dark:text-white transition-colors duration-500">
+      <body className="min-h-screen flex flex-col bg-[#011c2d] text-[#edfaff]">
         <ThemeProvider>
           <Navbar />
-          <main className="flex-1 pt-20">{children}</main>
+          <main className="flex-1 pt-20"><PageTransition>{children}</PageTransition></main>
           <Footer />
           <WhatsAppFloatingButton type="default" position="bottom-right" />
           <ExitIntentPopup 

@@ -1,397 +1,64 @@
-﻿'use client'
+'use client'
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { ArrowRight, Check, Star, TrendingUp, Zap, Shield, Code2, Palette, MessageCircle, ShoppingCart, RefreshCw, Wrench } from 'lucide-react'
-import { BRAND, SERVICES, TESTIMONIALS, CASE_STUDIES, FAQ, PRICING, BLOG_POSTS } from '@/lib/constants'
-import { generateOrganizationSchema, generateFAQSchema } from '@/lib/schema'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { ArrowDownRight, ArrowUpRight, Bot, Check, Code2, Megaphone, MousePointer2, Quote, Search, ShoppingBag, Sparkles, WandSparkles } from 'lucide-react'
+import { BRAND, SEO } from '@/lib/constants'
+import { generateOrganizationSchema } from '@/lib/schema'
+import { generateFAQSchema } from '@/lib/schema'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
+import { HomeFAQ } from '@/components/sections/HomeFAQ'
+import { FAQ } from '@/lib/constants'
+
+const capabilities = [
+  { icon: Code2, number: '01', title: 'Web development', text: 'Fast, scalable websites engineered around your next stage of growth.' },
+  { icon: MousePointer2, number: '02', title: 'Conversion design', text: 'Landing pages and interfaces that make the right action feel obvious.' },
+  { icon: Bot, number: '03', title: 'AI automation', text: 'Chatbots and workflows that give your team more time for meaningful work.' },
+  { icon: Megaphone, number: '04', title: 'Growth campaigns', text: 'Google, Meta, and ChatGPT ads connected to a clear commercial goal.' },
+  { icon: Search, number: '05', title: 'SEO foundations', text: 'Technical structure and content direction built for lasting visibility.' },
+  { icon: ShoppingBag, number: '06', title: 'Ecommerce systems', text: 'Online stores that make browsing, buying, and managing simple.' },
+]
+
+const serviceSignals = ['WEB DEVELOPMENT', 'UI / UX DESIGN', 'LANDING PAGES', 'AI CHATBOTS', 'SEO STRATEGY', 'GOOGLE ADS', 'META ADS', 'CHATGPT ADS', 'ECOMMERCE', 'REDESIGN', 'MAINTENANCE']
+const testimonials = [
+  { quote: 'DevArea helped us turn a complicated offer into a website people understood immediately.', name: 'Founder, growing service brand', meta: 'Website + positioning' },
+  { quote: 'The team brought calm to the process and gave us a digital foundation we can finally build on.', name: 'Marketing lead, modern startup', meta: 'Redesign + SEO' },
+  { quote: 'Clear thinking, beautiful execution, and support that did not disappear after launch.', name: 'Owner, independent business', meta: 'Landing page + campaigns' },
+]
+const principles = ['Strategy before screens', 'Performance from day one', 'Human support after launch']
 
 export default function Home() {
-  const orgSchema = generateOrganizationSchema()
-  const faqSchema = generateFAQSchema(FAQ.slice(0, 4).map(f => ({ question: f.question, answer: f.answer })))
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+  const schema = generateOrganizationSchema()
+  const faqSchema = generateFAQSchema(FAQ)
+  useEffect(() => {
+    const timer = window.setInterval(() => setTestimonialIndex((current) => (current + 1) % testimonials.length), 5200)
+    return () => window.clearInterval(timer)
+  }, [])
 
-  return (
-    <>
-      {/* Global Dark Mode Styles */}
-      <style>{`
-        :root { 
-          --color-services-bg: #eeeedf;
-          --color-heading: #000000;
-          --color-text: #475569;
-        }
-        html.dark { 
-          --color-services-bg: #000000;
-          --color-heading: #ffffff;
-          --color-text: #cbd5e1;
-        }
-      `}</style>
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+    <main className="home-page overflow-hidden">
+      <section className="relative isolate flex min-h-[calc(100vh-5rem)] items-end overflow-hidden px-6 pb-16 pt-24 sm:px-10 lg:min-h-[760px] lg:px-16 lg:pb-24 lg:pt-32">
+        <Image src="/images/premium-solutions.png" alt="DevArea digital product design workspace" fill priority sizes="100vw" className="-z-20 object-cover object-center opacity-70 lg:object-[58%_center]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#011c2d_0%,rgba(1,28,45,.96)_30%,rgba(1,28,45,.68)_58%,rgba(1,28,45,.15)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,#011c2d_0%,transparent_42%,rgba(1,28,45,.3)_100%)]" />
+        <div className="mx-auto w-full max-w-7xl"><motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8 }} className="max-w-3xl"><div className="mb-8 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a7ebf2]"><span className="h-px w-10 bg-[#a7ebf2]" /> Independent digital studio</div><h1 className="text-balance text-5xl font-semibold leading-[.98] tracking-[-0.04em] text-white sm:text-7xl lg:text-[6.4rem]">Make your next move <span className="text-[#a7ebf2]">visible.</span></h1><p className="mt-8 max-w-xl text-lg leading-8 text-[#d1e8ed]">DevArea builds the websites, automations, and campaigns that turn good businesses into obvious choices.</p><div className="mt-10 flex flex-col gap-4 sm:flex-row"><Link href="/contact" className="group flex items-center justify-center gap-3 rounded-full bg-[#a7ebf2] px-7 py-4 font-bold text-[#011c2d] transition hover:bg-white">Start a conversation <ArrowUpRight size={18} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" /></Link><Link href="/services" className="flex items-center justify-center gap-3 rounded-full border border-[#a7ebf2]/50 px-7 py-4 font-semibold text-[#edfaff] transition hover:border-[#a7ebf2] hover:bg-[#082f49]/70">Explore services <ArrowDownRight size={18} /></Link></div><div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#b5d4dc]">{principles.map((principle) => <span key={principle} className="flex items-center gap-2"><Check size={15} className="text-[#a7ebf2]" />{principle}</span>)}</div></motion.div><div className="mt-16 flex items-center justify-between border-t border-white/20 pt-5 text-xs uppercase tracking-[.18em] text-[#9fc8d4]"><span>Scroll to explore</span><span className="hidden sm:block">Lucknow · India · Worldwide</span></div></div>
+      </section>
+      <TestimonialsSection />
+      <HomeFAQ />
 
-      {/* Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <section className="overflow-hidden border-y border-[#54acbf]/20 bg-[#082f49] py-5"><div className="edge-fade overflow-hidden"><div className="service-marquee flex items-center gap-8 text-xs font-bold tracking-[.2em] text-[#a7ebf2]">{[...serviceSignals, ...serviceSignals].map((signal, index) => <span key={`${signal}-${index}`} className="flex items-center gap-8 whitespace-nowrap"><span>{signal}</span><span className="text-[#54acbf]">✦</span></span>)}</div></div></section>
 
-      <main className="flex flex-col w-full bg-light-bg">
-        {/* Hero Section */}
-        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 sm:pb-20 px-4 bg-light-bg dark:bg-dark-bg">
-          {/* Background Elements */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob" />
-            <div className="absolute top-40 right-10 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-2000" />
-            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-4000" />
-          </div>
+      <section className="bg-[#edfaff] px-6 py-24 text-[#011c2d] sm:px-10 lg:px-16 lg:py-32"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="text-sm font-bold uppercase tracking-[.2em] text-[#26658c]">What we do</p><h2 className="mt-5 max-w-md text-4xl font-semibold leading-tight tracking-[-.03em] sm:text-5xl">Digital work with a point of view.</h2></div><div><p className="max-w-2xl text-xl leading-8 text-[#26658c]">You do not need more noise. You need a partner who can connect positioning, design, technology, and distribution into one clear experience.</p><Link href="/about" className="mt-8 inline-flex items-center gap-2 font-bold text-[#0d5c73] hover:text-[#011c2d]">Meet DevArea <ArrowUpRight size={17} /></Link></div></div><div className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-[#54acbf]/25 bg-[#54acbf]/25 sm:grid-cols-2 lg:grid-cols-3">{capabilities.map(({ icon: Icon, number, title, text }, index) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .07 }} className="group min-h-64 bg-[#edfaff] p-7 transition hover:bg-white"><div className="flex items-center justify-between"><Icon size={25} className="text-[#26658c]" /><span className="text-xs font-bold text-[#54acbf]">{number}</span></div><h3 className="mt-12 text-xl font-bold">{title}</h3><p className="mt-4 leading-7 text-[#26658c]">{text}</p></motion.div>)}</div></div></section>
 
-          <div className="max-w-7xl mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700/50 rounded-full">
-                  <Star className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
-                  <span className="text-sm text-yellow-700 dark:text-yellow-300 font-medium">Award-winning digital agency</span>
-                </div>
+      <section className="bg-[#edfaff] px-6 py-24 text-[#011c2d] sm:px-10 lg:px-16 lg:py-32"><div className="mx-auto max-w-7xl"><div className="mb-12 flex items-end justify-between gap-6"><div><div className="flex items-center gap-4 text-[#26658c]"><Quote size={22} /><span className="text-sm font-bold uppercase tracking-[.2em]">Good company</span></div><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.03em] sm:text-5xl">A few words from the other side.</h2></div><div className="hidden gap-2 sm:flex">{testimonials.map((item, index) => <button key={item.name} aria-label={`Show testimonial ${index + 1}`} onClick={() => setTestimonialIndex(index)} className={`h-2 rounded-full transition-all ${testimonialIndex === index ? 'w-8 bg-[#0d5c73]' : 'w-2 bg-[#54acbf]/40'}`} />)}</div></div><motion.div key={testimonialIndex} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }} className="grid gap-10 rounded-[2rem] border border-[#54acbf]/30 bg-white p-8 shadow-[12px_12px_0_#a7ebf2] sm:p-12 lg:grid-cols-[.25fr_1fr]"><div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#011c2d] text-2xl text-[#a7ebf2]">“</div><div><p className="max-w-4xl text-3xl font-semibold leading-tight tracking-[-.02em] sm:text-5xl">{testimonials[testimonialIndex].quote}</p><div className="mt-10 flex flex-col justify-between gap-3 border-t border-[#54acbf]/25 pt-5 text-sm sm:flex-row"><span className="font-bold text-[#0d5c73]">{testimonials[testimonialIndex].name}</span><span className="text-[#26658c]">{testimonials[testimonialIndex].meta}</span></div></div></motion.div></div></section>
 
-                <h1
-                  className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-                  style={{ color: 'var(--color-heading, #0f172a)' }}
-                >
-                  Build 
-                  <span className="bg-gradient-to-r from-yellow-600 to-orange-600 dark:from-yellow-400 dark:to-orange-400 bg-clip-text text-transparent"> Websites </span>
-                  That Convert
-                </h1>
-
-                <p className="text-lg sm:text-xl text-light-text-secondary dark:text-dark-text-secondary mb-8 max-w-2xl leading-relaxed">
-                  We design and develop premium websites, landing pages, and ecommerce stores that drive measurable growth. With strategic design, technical SEO, and AI integration, we help businesses dominate their markets.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Link href="/contact">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-black rounded-lg font-semibold hover:shadow-lg hover:shadow-yellow-400/40 transition-all flex items-center gap-2"
-                    >
-                      Start Your Project <ArrowRight className="w-5 h-5" />
-                    </motion.button>
-                  </Link>
-                  <Link href="/portfolio">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-8 py-4 border-2 border-yellow-400/50 dark:border-yellow-600/50 text-light-accent dark:text-yellow-400 rounded-lg font-semibold hover:bg-yellow-50 dark:hover:bg-yellow-500/10 transition-all"
-                    >
-                      View Our Work
-                    </motion.button>
-                  </Link>
-                </div>
-
-                <div className="flex gap-6 text-sm text-light-text-secondary dark:text-dark-text-secondary">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-                    <span>50+ Successful Projects</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-                    <span>Fast Turnaround</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right Visual */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative h-96 lg:h-full min-h-96"
-              >
-                <div className="absolute inset-0 rounded-2xl flex items-center justify-center overflow-hidden">
-                  <Image
-                    src="/images/premium-solutions.png"
-                    alt="Premium Digital Solutions - Laptop and Phone Mockup"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 100vw"
-                    className="object-cover object-center"
-                    priority
-                  />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section - "What We Deliver" */}
-        <section 
-          className="w-full py-16 sm:py-24 lg:py-32 px-4 transition-colors duration-500"
-          style={{
-            backgroundColor: 'var(--color-services-bg, #eeeedf)',
-          }}
-        >
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-16 sm:mb-20"
-            >
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 transition-colors duration-300" style={{color: 'var(--color-heading, #000000)'}}>
-                What We Deliver
-              </h2>
-              <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed transition-colors duration-300" style={{color: 'var(--color-text, #475569)'}}>
-                From strategy to code, design to delivery, DevArea brings your ideas to life through design, technology, and creativity that actually performs.
-              </p>
-            </motion.div>
-
-            {/* Services Grid - All 8 Services */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-              {SERVICES.map((service, index) => {
-                // Service color mapping for card backgrounds
-                const colorMap: { [key: string]: { start: string; end: string; icon: React.ReactNode } } = {
-                  'web-development': { start: '#2563eb', end: '#1e3a8a', icon: <Code2 className="w-7 h-7 text-white" /> },
-                  'uiux-design': { start: '#a855f7', end: '#6d28d9', icon: <Palette className="w-7 h-7 text-white" /> },
-                  'landing-pages': { start: '#ec4899', end: '#be185d', icon: <Zap className="w-7 h-7 text-white" /> },
-                  'ecommerce': { start: '#f97316', end: '#c2410c', icon: <ShoppingCart className="w-7 h-7 text-white" /> },
-                  'seo-websites': { start: '#16a34a', end: '#15803d', icon: <TrendingUp className="w-7 h-7 text-white" /> },
-                  'ai-chatbot': { start: '#0891b2', end: '#0e7490', icon: <MessageCircle className="w-7 h-7 text-white" /> },
-                  'website-redesign': { start: '#7c3aed', end: '#5b21b6', icon: <RefreshCw className="w-7 h-7 text-white" /> },
-                  'maintenance': { start: '#64748b', end: '#475569', icon: <Wrench className="w-7 h-7 text-white" /> },
-                }
-
-                const colors = colorMap[service.id] || colorMap['web-development']
-
-                return (
-                  <motion.div
-                    key={service.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -6 }}
-                  >
-                    <Link href={service.href}>
-                      <div
-                        className="group h-full p-6 sm:p-7 rounded-[20px] shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden relative"
-                        style={{
-                          background: `linear-gradient(135deg, ${colors.start} 0%, ${colors.end} 100%)`,
-                        }}
-                      >
-                        {/* Decorative Background */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-16 -mt-16 group-hover:opacity-10 transition-opacity" />
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-black opacity-10 rounded-full -ml-12 -mb-12 group-hover:opacity-20 transition-opacity" />
-
-                        {/* Content */}
-                        <div className="relative z-10">
-                          {/* Icon and Arrow */}
-                          <div className="flex justify-between items-start mb-4">
-                            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                              {colors.icon}
-                            </div>
-                            <ArrowRight className="w-5 h-5 text-white opacity-60 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
-                          </div>
-
-                          {/* Title */}
-                          <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                            {service.title}
-                          </h3>
-
-                          {/* Description */}
-                          <p className="text-white/90 text-sm leading-relaxed mb-4">
-                            {service.description}
-                          </p>
-
-                          {/* Explore Button */}
-                          <button className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-medium text-sm rounded-lg transition-all duration-200 group/btn">
-                            Learn More
-                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                          </button>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us Section */}
-        <section className="w-full py-12 sm:py-20 lg:py-32 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 sm:mb-20 text-center">
-              <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] bg-clip-text text-transparent">
-                  Why Choose DevArea
-                </span>
-              </h2>
-              <p className="text-xl text-light-text max-w-2xl mx-auto">
-                We combine strategy, design, and technology to deliver results
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { icon: TrendingUp, title: 'Results-Driven', description: 'Every project is optimized for conversions and measurable growth' },
-                { icon: Shield, title: 'Premium Quality', description: 'Production-ready code, modern design, and best practices' },
-                { icon: Zap, title: 'Fast & Responsive', description: 'Blazing-fast websites optimized for mobile and desktop' },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-8 bg-gradient-to-br from-[#b91c1c]/10 to-[#f59e0b]/10 border border-[#f59e0b]/30 rounded-xl"
-                >
-                  <item.icon className="w-12 h-12 text-[#fbbf24] mb-4" />
-                  <h3 className="text-xl font-bold bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent mb-3">{item.title}</h3>
-                  <p className="text-light-text">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="w-full py-12 sm:py-20 lg:py-32 px-4 bg-dark-900/50">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 sm:mb-20 text-center">
-              <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#dc2626] to-[#f59e0b] bg-clip-text text-transparent">
-                  Loved by Clients
-                </span>
-              </h2>
-              <p className="text-xl text-light-text max-w-2xl mx-auto">
-                Hear from businesses we've helped grow
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {TESTIMONIALS.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-8 bg-gradient-to-br from-dark-800 to-dark-900 border border-white/10 rounded-xl"
-                >
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-light-text mb-6 leading-relaxed">{testimonial.content}</p>
-                  <div className="pt-6 border-t border-white/10">
-                    <p className="font-semibold text-white">{testimonial.author}</p>
-                    <p className="text-light-text text-sm">{testimonial.role}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Portfolio Preview */}
-        <section className="w-full py-12 sm:py-20 lg:py-32 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12 sm:mb-20">
-              <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#fbbf24] to-[#dc2626] bg-clip-text text-transparent">
-                  Featured Work
-                </span>
-              </h2>
-              <p className="text-xl text-light-text">
-                Projects that showcase our expertise
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {CASE_STUDIES.map((study, index) => (
-                <motion.div
-                  key={study.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group overflow-hidden rounded-xl border border-white/10 hover:border-[#f59e0b]/50 transition-all duration-300"
-                >
-                  <div className="aspect-video bg-gradient-to-br from-[#b91c1c]/20 to-[#f59e0b]/20 overflow-hidden relative">
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent" />
-                  </div>
-                  <div className="p-6 bg-dark-900">
-                    <div className="text-sm text-[#fbbf24] mb-2 font-semibold">{study.category}</div>
-                    <h3 className="text-xl font-bold text-white mb-3">{study.title}</h3>
-                    <ul className="space-y-1 text-sm text-light-text">
-                      {study.results.slice(0, 2).map((result, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-green-400" />
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Link href="/portfolio">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 border-2 border-[#f59e0b] text-[#fbbf24] rounded-lg font-semibold hover:bg-amber-500/10 transition-all inline-flex items-center gap-2"
-                >
-                  View All Case Studies <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="w-full py-12 sm:py-20 lg:py-32 px-4 bg-gradient-to-r from-[#b91c1c]/10 to-[#f59e0b]/10 border-y border-[#f59e0b]/30">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] bg-clip-text text-transparent">
-              Ready to grow your business?
-            </h2>
-            <p className="text-xl text-light-text mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and create a strategy that drives real results for your business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-[#b91c1c] to-[#f59e0b] text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-[#b91c1c]/40 transition-all flex items-center justify-center gap-2"
-                >
-                  Schedule a Consultation <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-              <Link href="/pricing">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-[#f59e0b] text-amber-300 rounded-lg font-semibold hover:bg-amber-500/10 transition-all"
-                >
-                  View Pricing
-                </motion.button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-    </>
-  )
+      <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-32"><div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#54acbf]/10 blur-3xl" /><div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_.8fr] lg:items-end"><div><div className="flex items-center gap-4 text-[#a7ebf2]"><WandSparkles size={22} /><span className="text-sm font-bold uppercase tracking-[.2em]">A better starting point</span></div><h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-[-.03em] text-white sm:text-6xl">Bring us the messy brief. We will find the signal.</h2></div><div className="lg:pb-2"><p className="text-lg leading-8 text-[#9fc8d4]">From a first website to an entire digital growth system, we make complicated things feel calm, useful, and ready to ship.</p><Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#a7ebf2] px-6 py-3 font-semibold text-[#011c2d] transition hover:bg-white">Tell us what is next <ArrowUpRight size={17} /></Link></div></div></section>
+      <div className="sr-only">{BRAND.name} is a digital solutions agency in India specializing in {SEO.keywords.join(', ')}.</div>
+    </main>
+  </>
 }
-
-
